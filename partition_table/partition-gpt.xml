@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<configuration>
+  <parser_instructions>
+    <!-- NOTE: entries here are used by the parser when generating output -->
+    <!-- NOTE: each filename must be on it's own line as in variable=value-->
+    WRITE_PROTECT_BULK_SIZE_IN_KB = 65536
+    AUTO_GROW_LAST_PARTITION      = false
+  </parser_instructions>
+
+  <!-- NOTE: "physical_partition" are listed in order and apply to devices \
+       such as eMMC cards that have (for example) 3 physical partitions -->
+  <!-- This is physical partition 0 -->
+  <physical_partition>
+    <!-- NOTE: Define information for each partition, which will be created in order listed here -->
+    <!-- NOTE: Place all "readonly=true" partitions side by side for optimum space usage -->
+    <!-- NOTE: If OPTIMIZE_READONLY_PARTITIONS=true, then partitions won't be in the order listed here -->
+    <!--       they will instead be placed side by side at the beginning of the disk -->
+    <partition label="boot"     size_in_kb="65519"  type="20117f86-E985-4357-B9EE-374BC1D8487D" bootable="false" readonly="false" filename="boot.img" />
+    <partition label="system"   size_in_kb="524288" type="0FC63DAF-8483-4772-8E79-3D69D8477DE4" bootable="false" readonly="true"  filename="system.img" sparse="true"/>
+    <partition label="userdata" size_in_kb="524288" type="0FC63DAF-8483-4772-8E79-3D69D8477DE4" bootable="false" readonly="false" filename="userdata.img" sparse="true"/>
+  </physical_partition>
+
+</configuration>

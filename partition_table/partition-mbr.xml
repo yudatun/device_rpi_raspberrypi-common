@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<configuration>
+  <parser_instructions>
+    DISK_SIGNATURE = 0xf72a20a6
+  </parser_instructions>
+
+  <physical_partition>
+    <partition label="boot"
+               first_lba_in_kb="4096"
+               size_in_kb="65536"
+               type="0x0c"
+               bootable="false"
+               readonly="true"
+               filename="boot.img" />
+
+    <partition label="system"
+               size_in_kb="1048576"
+               type="0x83"
+               bootable="false"
+               readonly="true"
+               filename="system.img"
+               sparse="true" />
+
+    <partition label="userdata"
+               size_in_kb="131072"
+               type="0x83"
+               bootable="false"
+               readonly="false"
+               filename="userdata.img"
+               sparse="true" />
+  </physical_partition>
+
+</configuration>
