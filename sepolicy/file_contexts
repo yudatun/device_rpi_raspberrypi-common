@@ -1,0 +1,4 @@
+# Serial console
+/dev/ttyAMA0                u:object_r:console_device:s0
+/dev/block/mmcblk0          u:object_r:mmc_block_device:s0
+/system/bin/initnetwork.sh  u:object_r:brillo_setup_exec:s0
