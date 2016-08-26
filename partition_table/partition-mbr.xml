@@ -14,7 +14,7 @@
                filename="boot.img" />
 
     <partition label="system"
-               size_in_kb="1048576"
+               size_in_kb="131072"
                type="0x83"
                bootable="false"
                readonly="true"
