@@ -1,3 +1,13 @@
-# Serial console
+########################################
+# Devices
+#
 /dev/ttyAMA0                u:object_r:console_device:s0
-/dev/block/mmcblk0*         u:object_r:mmc_block_device:s0
+
+/dev/block/mmcblk0         u:object_r:mmcblk0_block_device:s0
+/dev/block/mmcblk0p1       u:object_r:mmcblk0_block_device:s0
+/dev/block/mmcblk0p2       u:object_r:mmcblk0_block_device:s0
+
+########################################
+# Boot files
+#
+/boot(/.*)?        u:object_r:boot_file:s0
