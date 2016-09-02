@@ -54,3 +54,5 @@
 
 dtoverlay=pi3-disable-bt
 dtoverlay=pi3-miniuart-bt
+
+kernel=kernel.img
