@@ -52,14 +52,14 @@ INSTALLED_MODULES_FILES := \
     mac80211.ko \
     rtl8xxxu.ko
 
-define mv-modules
+define cp-modules
 mkdir -p $(TARGET_OUT)/lib/modules
 mdpath=`find $(KERNEL_MODULES_INSTALL) -type f -name modules.dep`;\
 if [ "$$mdpath" != "" ];then\
 mpath=`dirname $$mdpath`;\
 for k in $(INSTALLED_MODULES_FILES); do \
 ko=`find $$mpath/kernel -type f -name $$k`;\
-for i in $$ko; do mv $$i $(TARGET_OUT)/lib/modules; done;\
+for i in $$ko; do cp -rf $$i $(TARGET_OUT)/lib/modules; done;\
 done; \
 fi
 endef
@@ -76,7 +76,7 @@ $(INSTALLED_BOOT_KERNEL_TARGET): $(KERNEL_IMAGE) $(KERNEL_DEPS) | $(ACP) $(MKKNL
 	$(ACP) -fp $(KERNEL_OUT)/arch/$(KERNEL_SRC_ARCH)/boot/dts/*.dtb $(TARGET_BOOT_OUT)/
 	$(ACP) -fp $(KERNEL_OUT)/arch/$(KERNEL_SRC_ARCH)/boot/dts/overlays/*.dtb* $(TARGET_BOOT_OUT)/overlays/
 	$(MKKNLIMG) $< $@
-	$(mv-modules)
+	$(cp-modules)
 
 .PHONY: kernel
 kernel: $(INSTALLED_BOOT_KERNEL_TARGET)
