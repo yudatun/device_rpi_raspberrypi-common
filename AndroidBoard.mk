@@ -50,7 +50,22 @@ INSTALLED_MODULES_FILES := \
     rfkill.ko \
     cfg80211.ko \
     mac80211.ko \
-    rtl8xxxu.ko
+    brcmutil.ko \
+    brcmfmac.ko \
+    rtl8xxxu.ko \
+    bnep.ko \
+    hci_uart.ko \
+    btbcm.ko \
+    bluetooth.ko \
+    snd_bcm2835.ko \
+    snd_pcm.ko \
+    snd_timer.ko \
+    snd.ko \
+    bcm2835_gpiomem.ko \
+    bcm2835_wdt.ko \
+    uio_pdrv_genirq.ko \
+    uio.ko \
+    ipv6.ko
 
 define cp-modules
 mkdir -p $(TARGET_OUT)/lib/modules
