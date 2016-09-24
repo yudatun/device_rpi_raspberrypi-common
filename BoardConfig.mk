@@ -47,4 +47,6 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SEPOLICY_DIRS += \
     device/rpi/raspberrypi-common/sepolicy
 
+########################################
 BOARD_ROOT_EXTRA_FOLDERS := boot
+BOARD_ROOT_EXTRA_SYMLINKS := /system/vendor/firmware:lib/firmware

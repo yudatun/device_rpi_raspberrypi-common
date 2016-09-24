@@ -11,3 +11,8 @@
 # Boot files
 #
 /boot(/.*)?        u:object_r:boot_file:s0
+
+#############################
+# lib files
+#
+/lib(/.*)?    u:object_r:system_file:s0
