@@ -67,6 +67,10 @@ INSTALLED_MODULES_FILES := \
     uio.ko \
     ipv6.ko
 
+########################################
+# Build Modules
+KERNEL_MODULES_INSTALL := $(PRODUCT_OUT)/modules/lib/modules
+
 define cp-modules
 mkdir -p $(TARGET_OUT)/lib/modules
 mdpath=`find $(KERNEL_MODULES_INSTALL) -type f -name modules.dep`;\
@@ -79,10 +83,37 @@ done; \
 fi
 endef
 
+# Disable CCACHE_DIRECT so that header location changes are noticed.
+define build_kernel
+	CCACHE_NODIRECT="true" $(MAKE) -C $(TARGET_KERNEL_SRC) \
+		O=$(realpath $(KERNEL_OUT)) \
+		ARCH=$(KERNEL_ARCH) \
+		CROSS_COMPILE="$(KERNEL_CROSS_COMPILE_WRAPPER)" \
+		KCFLAGS="$(KERNEL_CFLAGS)" \
+		KAFLAGS="$(KERNEL_AFLAGS)" \
+		INSTALL_MOD_PATH=$(realpath $(PRODUCT_OUT)/modules) \
+		$(1)
+endef
+
+$(KERNEL_MODULES_INSTALL): $(KERNEL_BIN)
+	$(hide) echo "Installing kernel modules ..."
+	# Since there may be no modules built, at least create the empty dir.
+	mkdir -p $@
+	if grep -q ^CONFIG_MODULES=y $(KERNEL_CONFIG) ; then \
+		$(call build_kernel,modules_install) ; \
+	fi
+
+# Makes sure any built modules will be included in the system image build.
+ALL_DEFAULT_INSTALLED_MODULES += $(KERNEL_MODULES_INSTALL)
+
+# The list of dependencies for the final kernel.
+KERNEL_DEPS := $(KERNEL_MODULES_INSTALL)
+
+########################################
 INSTALLED_BOOT_KERNEL_TARGET := $(TARGET_BOOT_OUT)/kernel.img
 MKKNLIMG := $(TARGET_KERNEL_SRC)/scripts/mkknlimg
 
-$(INSTALLED_BOOT_KERNEL_TARGET): $(KERNEL_IMAGE) $(KERNEL_DEPS) | $(ACP) $(MKKNLIMG)
+$(INSTALLED_BOOT_KERNEL_TARGET): $(KERNEL_BIN) $(KERNEL_DEPS) | $(ACP) $(MKKNLIMG)
 	$(call pretty, "Install kernel DTB: $@")
 	@rm -rf $@
 	@rm -rf $(TARGET_BOOT_OUT)/*.dtb
