@@ -30,7 +30,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := config.txt
-ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng,$(TARGET_BUILD_VARIANT)))
 LOCAL_SRC_FILES := config_debug.txt
 else
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
