@@ -1,12 +1,11 @@
 PRODUCT_PACKAGES += \
+    debuggerd \
+    dump_syms \
     cmdline.txt \
     config.txt \
     fstab.bcm \
-    mkdosfs
-
-PRODUCT_PACKAGES += \
-    debuggerd \
-    dump_syms \
-    shill_setup_wifi
-
-PRODUCT_PACKAGES += gpio-rpi
+    getcap \
+    gpio-rpi \
+    mkdosfs \
+    setcap \
+    shill_setup_wifi \
