@@ -5,7 +5,7 @@ PRODUCT_PACKAGES += \
     config.txt \
     fstab.bcm \
     getcap \
-    gpio-rpi \
+    gpiorpi \
     mkdosfs \
     setcap \
     shill_setup_wifi \
