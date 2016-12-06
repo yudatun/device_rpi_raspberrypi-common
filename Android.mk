@@ -26,7 +26,3 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
 
 include $(BUILD_PREBUILT)
-
-########################################
-
-include $(LOCAL_PATH)/boot/Android.mk
