@@ -47,24 +47,24 @@ $(INSTALLED_PARTITION_TABLE_TARGET):
 include device/generic/brillo/kernel.mk
 
 INSTALLED_MODULES_FILES := \
-    rfkill.ko \
-    cfg80211.ko \
-    mac80211.ko \
-    brcmutil.ko \
-    brcmfmac.ko \
-    rtl8xxxu.ko \
     bnep.ko \
     hci_uart.ko \
     btbcm.ko \
     bluetooth.ko \
-    snd_bcm2835.ko \
-    snd_pcm.ko \
-    snd_timer.ko \
+    brcmfmac.ko \
+    brcmutil.ko \
+    cfg80211.ko \
+    rfkill.ko \
+    snd-bcm2835.ko \
+    snd-pcm.ko \
+    snd-timer.ko \
     snd.ko \
-    bcm2835_gpiomem.ko \
+    bcm2835-gpiomem.ko \
     bcm2835_wdt.ko \
     uio_pdrv_genirq.ko \
     uio.ko \
+    i2c-dev.ko \
+    fuse.ko \
     ipv6.ko
 
 ########################################
