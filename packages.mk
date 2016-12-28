@@ -9,3 +9,10 @@ PRODUCT_PACKAGES += \
     mkdosfs \
     setcap \
     shill_setup_wifi \
+
+# MQTT C SDK
+PRODUCT_PACKAGES += \
+    libpaho-mqtt3c \
+    libpaho-mqtt3cs \
+    libpaho-mqtt3a \
+    libpaho-mqtt3s \
